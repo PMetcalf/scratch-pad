@@ -1,6 +1,8 @@
 '''
 Python API Integration
 
-Best practice for integrating an API into a workflow.
+Best practices for integrating an API into a workflow.
 '''
 
+# Module imports
+import requests
