@@ -1,7 +1,7 @@
 '''
-Python API Integration
+Python API Library
 
-Best practices for integrating an API into a workflow.
+Best practices for building an API Library to consume or provision an API.
 '''
 
 # Module imports
