@@ -23,7 +23,7 @@ if resp.status_code != 200:
 for todo_item in resp.json():
     print('{} {}'.format(todo_item['id'], todo_item['summary']))
 
-# --- Posting Data (Get Task) ---
+# --- Posting Data (Post Task) ---
 
 # Define task
 task = {"summary": "Take out trash", "description": ""}
@@ -41,4 +41,8 @@ if resp.status_code != 201:
     raise ApiError('POST /tasks/ {}'.format(resp.status_code))
 
 print('Created task, ID: {}'.format(resp.json()["id"]))
+
+# --- API Library (For Tasks) ---
+
+class todo:
 
