@@ -31,6 +31,11 @@ task = {"summary": "Take out trash", "description": ""}
 # Post task
 resp = requests.post(base_url, json = task)
 
+# Alternate post routine (XML, YAML)
+#respo = requests.post(base_url,
+#                      data = json.dumps(task),
+#                      headers = {'Content-Type':'application/json'},)  # Adds key as new header field
+
 # Handle erroneous response
 if resp.status_code != 201:
     raise ApiError('POST /tasks/ {}'.format(resp.status_code))
