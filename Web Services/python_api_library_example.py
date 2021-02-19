@@ -10,7 +10,34 @@ import requests
 # Constants
 base_url = 'https://todolist.example.com/tasks/'
 
-# --- Getting Data (Get Task) ---
+
+# --- API Library (For Tasks) ---
+# (Could also be a module)
+
+class todo:
+
+    def _url(self, path):
+        return 'https//todo.example.com' + path
+
+    def get_tasks(self):
+        return requests.get(_url('/tasks/'))
+    
+    def describe_task(self, task_id):
+        return requests.get(_url('/tasks/{:d}/'.format(task_id)))
+
+    def add_task(self, summary, description = ""):
+        return requests.post(_url('/tasks/'), json = {
+            'summary': summary,
+            'Description': description,
+        })
+
+    def task_done(self, task_id):
+        return requests.delete(_url('/tasks/{:d}'))
+
+    def update_task(self, task_id, summary, description):
+        pass
+
+# --- Using API - Getting Data (Get Task) ---
 
 # Get task
 resp = requests.get(base_url)
@@ -41,25 +68,3 @@ if resp.status_code != 201:
     raise ApiError('POST /tasks/ {}'.format(resp.status_code))
 
 print('Created task, ID: {}'.format(resp.json()["id"]))
-
-# --- API Library (For Tasks) ---
-
-class todo:
-
-    def _url(path):
-        return 'https//todo.example.com' + path
-
-    def get_tasks():
-        pass
-    
-    def describe_task(task_id):
-        pass
-
-    def add_task(summary, description = ""):
-        pass
-
-    def task_done(task_id):
-        pass
-
-    def update_task(task_id, summary, description):
-        pass
