@@ -46,6 +46,9 @@ print('Created task, ID: {}'.format(resp.json()["id"]))
 
 class todo:
 
+    def _url(path):
+        return 'https//todo.example.com' + path
+
     def get_tasks():
         pass
     
