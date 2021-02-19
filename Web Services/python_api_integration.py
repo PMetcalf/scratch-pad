@@ -7,7 +7,12 @@ Best practices for integrating an API into a workflow.
 # Module imports
 import requests
 
-resp = requests.get('https://todolist.example.com')
+# Constants
+base_url = 'https://todolist.example.com/tasks/'
+
+# --- Getting data ---
+
+resp = requests.get(base_url)
 
 # Handle erroneous responses
 if resp.status_code != 200:
@@ -15,3 +20,4 @@ if resp.status_code != 200:
 
 for todo_item in resp.json():
     print('{} {}'.format(todo_item['id'], todo_item['summary']))
+
