@@ -32,10 +32,14 @@ class todo:
         })
 
     def task_done(self, task_id):
-        return requests.delete(_url('/tasks/{:d}'))
+        return requests.delete(_url('/tasks/{:d}'.format(task_id)))
 
     def update_task(self, task_id, summary, description):
-        pass
+        url = _url('tasks/{:d}'.format(task_id))
+        return requests.put(url, json = {
+            'summary': summary,
+            'description': description,
+        })
 
 # --- Using API - Getting Data (Get Task) ---
 
