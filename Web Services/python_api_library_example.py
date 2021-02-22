@@ -71,3 +71,9 @@ class todo:
             'summary': summary,
             'description': description,
         })
+
+# --- Using the Library ---
+
+# Create new task
+resp = todo.add_task("Take out the trash")
+
