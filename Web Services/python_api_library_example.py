@@ -89,3 +89,7 @@ resp = todo.get_tasks()
 # Handle any errors
 if resp.status_code != 200:
     raise ApiError('Cannot fetch all tasks: {}'.format(resp.status_code))
+
+# Print details of each item
+for todo_item in resp.json():
+    print('{} {}'.format(todo_item['id'], todo_item['summary']))
