@@ -10,37 +10,6 @@ import requests
 # Constants
 base_url = 'https://todolist.example.com/tasks/'
 
-
-# --- API Library (For Tasks) ---
-# (Could also be a module)
-
-class todo:
-
-    def _url(self, path):
-        return 'https//todo.example.com' + path
-
-    def get_tasks(self):
-        return requests.get(_url('/tasks/'))
-    
-    def describe_task(self, task_id):
-        return requests.get(_url('/tasks/{:d}/'.format(task_id)))
-
-    def add_task(self, summary, description = ""):
-        return requests.post(_url('/tasks/'), json = {
-            'summary': summary,
-            'Description': description,
-        })
-
-    def task_done(self, task_id):
-        return requests.delete(_url('/tasks/{:d}'.format(task_id)))
-
-    def update_task(self, task_id, summary, description):
-        url = _url('tasks/{:d}'.format(task_id))
-        return requests.put(url, json = {
-            'summary': summary,
-            'description': description,
-        })
-
 # --- Using API - Getting Data (Get Task) ---
 
 # Get task
@@ -72,3 +41,33 @@ if resp.status_code != 201:
     raise ApiError('POST /tasks/ {}'.format(resp.status_code))
 
 print('Created task, ID: {}'.format(resp.json()["id"]))
+
+# --- API Library (For Tasks) ---
+# (Could also be a module)
+
+class todo:
+
+    def _url(self, path):
+        return 'https//todo.example.com' + path
+
+    def get_tasks(self):
+        return requests.get(_url('/tasks/'))
+    
+    def describe_task(self, task_id):
+        return requests.get(_url('/tasks/{:d}/'.format(task_id)))
+
+    def add_task(self, summary, description = ""):
+        return requests.post(_url('/tasks/'), json = {
+            'summary': summary,
+            'Description': description,
+        })
+
+    def task_done(self, task_id):
+        return requests.delete(_url('/tasks/{:d}'.format(task_id)))
+
+    def update_task(self, task_id, summary, description):
+        url = _url('tasks/{:d}'.format(task_id))
+        return requests.put(url, json = {
+            'summary': summary,
+            'description': description,
+        })
