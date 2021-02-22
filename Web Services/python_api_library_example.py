@@ -75,5 +75,9 @@ class todo:
 # --- Using the Library ---
 
 # Create new task
-resp = todo.add_task("Take out the trash")
+resp = todo.add_task(summary = "Take out the trash")
 
+# Handle any errors
+if resp.status_code != 201:
+    raise ApiError("Cannot create task: {}".format(resp.status_code))
+print('Created task. Id: {}'.format(resp.json()["id"]))
