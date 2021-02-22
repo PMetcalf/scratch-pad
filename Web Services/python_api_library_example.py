@@ -26,7 +26,7 @@ for todo_item in resp.json():
 # --- Posting Data (Post Task) ---
 
 # Define task
-task = {"summary": "Take out trash", "description": ""}
+task = {'summary': 'Take out trash', 'description': ''}
 
 # Post task
 resp = requests.post(base_url, json = task)
@@ -40,7 +40,7 @@ resp = requests.post(base_url, json = task)
 if resp.status_code != 201:
     raise ApiError('POST /tasks/ {}'.format(resp.status_code))
 
-print('Created task, ID: {}'.format(resp.json()["id"]))
+print('Created task, ID: {}'.format(resp.json()['id']))
 
 # --- API Library (For Tasks) ---
 # (Could also be a module)
@@ -75,9 +75,17 @@ class todo:
 # --- Using the Library ---
 
 # Create new task
-resp = todo.add_task(summary = "Take out the trash")
+resp = todo.add_task(summary = 'Take out the trash')
 
 # Handle any errors
 if resp.status_code != 201:
-    raise ApiError("Cannot create task: {}".format(resp.status_code))
-print('Created task. Id: {}'.format(resp.json()["id"]))
+    raise ApiError('Cannot create task: {}'.format(resp.status_code))
+
+print('Created task. Id: {}'.format(resp.json()['id']))
+
+# Retrieve existing tasks
+resp = todo.get_tasks()
+
+# Handle any errors
+if resp.status_code != 200:
+    raise ApiError('Cannot fetch all tasks: {}'.format(resp.status_code))
