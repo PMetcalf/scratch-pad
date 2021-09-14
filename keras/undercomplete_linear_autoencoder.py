@@ -12,6 +12,6 @@ autoencoder = keras.models.Sequential([encoder, decoder])
 
 autoencoder.compile(loss = 'mse', optimizer = keras.optimizers.SGD(lr = 0.1))
 
-history = autoencoder.fit(X_train, X_train, epochs = 20)
+history = autoencoder.fit(X_train, X_train, epochs = 20)    # Note that the same dataset is used as both input and target
 
 codings = encoder.predict(X_train)
