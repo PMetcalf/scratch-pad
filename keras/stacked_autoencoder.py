@@ -55,6 +55,12 @@ Visualising the Fashion MNIST Dataset
 '''
 
 # First, use the stacked autoencoder to reduce the dimensionality to a reasonable level
-
+X_valid_compressed = stacked_autoencoder.predict(X_valid)
 
 # Use another algorithm (sklearn) for visualisation
+from sklearn.manifold import TSNE
+tsne = TSNE()
+
+X_valid_2D = tsne.fit_transform(X_valid_compressed)
+
+plt.scatter(X_valid_2D[:, 0], X_valid_2D[:, 1], c = y_valid, s = 10, cmap = 'tab10')
