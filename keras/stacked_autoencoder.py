@@ -47,3 +47,14 @@ def show_reconstructions(model, n_images = 5):
         plot_image(X_valid[image_index])
         plt.subplot(2, n_images, 1 + n_images + image_index)
         plot_image(reconstructions[image_index])
+
+show_reconstructions(stacked_autoencoder)
+
+'''
+Visualising the Fashion MNIST Dataset
+'''
+
+# First, use the stacked autoencoder to reduce the dimensionality to a reasonable level
+
+
+# Use another algorithm (sklearn) for visualisation
