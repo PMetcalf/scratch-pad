@@ -37,11 +37,19 @@ class DenseTranspose(keras.layers.Layer):
 dense_1 = keras.layers.Dense(100, activation = 'selu')
 dense_2 = keras.layers.Dense(30, activation = 'selu')
 
-# Build the initial model
+# Build the encoder
 tied_encoder = keras.models.Sequential([
     keras.layers.Flatten(input_shape = [28, 28]),
     dense_1,
     dense_2
 ])
 
-# Tie the layer weights
+# Build the (tied) decoder
+tied_decoder = keras.models.Sequential([
+    DenseTranspose(dense_2, activation = 'selu'),
+    DenseTranspose(dense_1, activation = 'sigmoid'),
+    keras.layers.Reshape([28, 28])
+])
+
+# Build the tied model
+tied_ae = keras.models.Sequential([tied_encoder, tied_decoder])
