@@ -2,6 +2,8 @@
 The following code ties weights between encoder and decoder in a stacked autoencoder
 '''
 
+import keras
+
 # Define a custom layer
 class DenseTranspose(keras.layers.Layer):
 
@@ -29,3 +31,17 @@ class DenseTranspose(keras.layers.Layer):
         z = tf.matmul(inputs, self.dense.weights[0], transpose_b = True)
 
         return self.activation(z + self.biases)
+
+# Build a new stacked autoencoder with tied layers
+
+dense_1 = keras.layers.Dense(100, activation = 'selu')
+dense_2 = keras.layers.Dense(30, activation = 'selu')
+
+# Build the initial model
+tied_encoder = keras.models.Sequential([
+    keras.layers.Flatten(input_shape = [28, 28]),
+    dense_1,
+    dense_2
+])
+
+# Tie the layer weights
