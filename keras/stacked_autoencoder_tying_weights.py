@@ -5,6 +5,8 @@ The following code ties weights between encoder and decoder in a stacked autoenc
 # Define a custom layer
 class DenseTranspose(keras.layers.Layer):
 
+# Acts like a regular dense layer, but uses another dense layer's weights
+
     def __init__(self, dense, activation = None, **kwargs):
 
         self.dense = dense
@@ -21,4 +23,9 @@ class DenseTranspose(keras.layers.Layer):
 
         super().build(batch_input_shape)
 
-    
+    def call(self, inputs):
+
+        # Perform transposition of weights on the fly for efficiency using tf.matmul
+        z = tf.matmul(inputs, self.dense.weights[0], transpose_b = True)
+
+        return self.activation(z + self.biases)
