@@ -11,6 +11,12 @@ conv_encoder = keras.models.Sequential([
     keras.layers.MaxPool2D(pool_size = 2),
     ])
 
-# Build the decoder
+# Build the decoder - Transpose convolutional layer (alternatively combine upsampling layers with convolutional layers)
+conv_decoder = keras.models.Sequential([
+    keras.layers.Conv2DTranspose(32, kernel_size = 3, strides = 2, padding = "valid", activation = "selu", input_shape = [3, 3, 61]),
+    keras.layers.Conv2DTranspose(16, kernel_size = 3, strides = 2, padding = "same", activation = "sigmoid"),
+    keras.layers.Reshape([28, 28])
+])
 
 # Build the complete assembly
+conv_ae = keras.models.Sequential([conv_encoder, conv_decoder])
