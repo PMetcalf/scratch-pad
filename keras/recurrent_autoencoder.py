@@ -11,7 +11,7 @@ from tensorflow.python.keras.layers.wrappers import TimeDistributed
 
 # Build the encoding layer
 recurrent_encoder = keras.models.Sequential([
-    keras.layers.LSTM(100, return_sequences = True, input_shape = [None, 28],
+    keras.layers.LSTM(100, return_sequences = True, input_shape = [None, 28]),  # 28 dimensions per step
     keras.layers.LSTM(30)
     ])
 
@@ -23,4 +23,5 @@ recurrent_decoder = keras.models.Sequential([
 ])
 
 # Assemble the encoder
+recurrent_ae = keras.models.Sequential([recurrent_encoder, recurrent_decoder])
 
