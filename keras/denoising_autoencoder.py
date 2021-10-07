@@ -24,3 +24,4 @@ dropout_decoder = keras.models.Sequential([
     ])
 
 # Full autoencoder
+dropout_ae = keras.models.Sequential([dropout_encoder, dropout_decoder])
