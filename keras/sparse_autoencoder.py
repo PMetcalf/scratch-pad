@@ -2,6 +2,8 @@
 Sparse Autoencoder
 
 Adds some regularisation to the coding layer's inputs to improve feature extraction per neuron.
+
+Setup to work with the MNIST clothing images dataset.
 '''
 
 import keras
@@ -22,3 +24,4 @@ sparse_l1_decoder = keras.models.Sequential([
 ])
 
 # Build the autoencoder
+sparse_l1_ae = keras.models.Sequential([sparse_l1_encoder, sparse_l1_decoder])
