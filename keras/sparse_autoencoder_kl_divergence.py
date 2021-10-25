@@ -28,3 +28,12 @@ class KLDivergenceRegulariser(keras.regularizers.Regularizer):
         return self.weight * (
             kl_divergence(self.target, mean_activities) + kl_divergence(1. - self.target, 1. - mean_activities)
         )
+
+# Build the regulariser
+kld_regulariser = KLDivergenceRegulariser(weight = 0.05, target = 0.1)
+
+# Build the encoder
+
+# Build the decoder
+
+# Build the autoencoder
