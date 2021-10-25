@@ -32,7 +32,12 @@ class KLDivergenceRegulariser(keras.regularizers.Regularizer):
 # Build the regulariser
 kld_regulariser = KLDivergenceRegulariser(weight = 0.05, target = 0.1)
 
-# Build the encoder
+# Build the encoder, with regulariser applied to final dense layer
+sparse_kl_encoder = keras.models.Sequential([
+    keras.layers.Flatten(input_shape = [28, 28]),
+    keras.layers.Dense(100, activation = 'selu'),
+    keras.layers.Dense(300, activation = 'sigmoid', activity_regularizer = kld_regulariser)
+])
 
 # Build the decoder
 
