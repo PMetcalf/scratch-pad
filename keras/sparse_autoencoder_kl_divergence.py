@@ -47,3 +47,4 @@ sparse_kl_decoder = keras.models.Sequential([
 ])
 
 # Build the autoencoder
+sparse_kl_ae = keras.models.Sequential([sparse_kl_encoder, sparse_kl_decoder])
