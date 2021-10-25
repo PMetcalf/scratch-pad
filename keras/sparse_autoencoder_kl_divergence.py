@@ -6,3 +6,9 @@ with tunable sparsity in the input layer, which seeks to balance the activation 
 
 Setup to work with the MNIST clothing images dataset.
 '''
+
+import keras
+
+K = keras.backend
+
+kl_divergence = keras.losses.kullback_leibler_divergence
