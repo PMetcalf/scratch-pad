@@ -40,5 +40,10 @@ sparse_kl_encoder = keras.models.Sequential([
 ])
 
 # Build the decoder
+sparse_kl_decoder = keras.models.Sequential([
+    keras.layers.Dense(100, activation = 'selu', input_shape = [300]),
+    keras.layers.Dense(28 * 28, activation = 'sigmoid'),
+    keras.layers.Reshape([28, 28])
+])
 
 # Build the autoencoder
