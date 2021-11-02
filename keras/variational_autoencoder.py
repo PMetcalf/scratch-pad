@@ -60,3 +60,10 @@ latent_loss = -0.5 * K.sum(1 + codings_log_var - K.exp(codings_log_var) - K.squa
 variational_ae.add_loss(K.mean(latent_loss) / 784.)
 
 variational_ae.compile(loss = 'binary_crossentropy', optimizer = 'rmsprop')
+
+# Train autoencoder
+history = variational_ae.fit(X_train, X_train, epochs = 50, batch_size = 128, validation_data = [X_valid, X_valid])
+
+# Generate images
+codings = tf.random.normal(shape = [12, codings_size])
+images = variational_decoder(codings).numpy()
