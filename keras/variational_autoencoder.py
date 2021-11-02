@@ -49,3 +49,8 @@ outputs = keras.layers.Reshape([28, 28]) (x)
 
 # Assemble the decoder
 variational_decoder = keras.Model(inputs = [decoder_inputs], outputs = [outputs])
+
+# Build variational autoencoder
+_, _, codings = variational_encoder(inputs)
+reconstructions = variational_decoder(codings)
+variational_ae = keras.Model(inputs = [inputs], outputs = [reconstructions])
