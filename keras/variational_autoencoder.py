@@ -54,3 +54,9 @@ variational_decoder = keras.Model(inputs = [decoder_inputs], outputs = [outputs]
 _, _, codings = variational_encoder(inputs)
 reconstructions = variational_decoder(codings)
 variational_ae = keras.Model(inputs = [inputs], outputs = [reconstructions])
+
+# Add latent and reconstruction losses
+latent_loss = -0.5 * K.sum(1 + codings_log_var - K.exp(codings_log_var) - K.square(codings_mean), axis = -1)
+variational_ae.add_loss(K.mean(latent_loss) / 784.)
+
+variational_ae.compile(loss = 'binary_crossentropy', optimizer = 'rmsprop')
