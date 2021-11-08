@@ -24,3 +24,6 @@ discriminator = keras.models.Sequential([
     keras.layers.Dense(100, activaiton = 'selu'),
     keras.layers.Dense(1, activation = 'sigmoid')
 ])
+
+# Build the gan
+gan = keras.models.Sequential([generator, discriminator])
