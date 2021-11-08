@@ -18,3 +18,9 @@ generator = keras.models.Sequential([
 ])
 
 # Structure the discriminator
+discriminator = keras.models.Sequential([
+    keras.layers.Flatten(input_shape = [28, 28]),
+    keras.layers.Dense(150, activation = 'selu'),
+    keras.layers.Dense(100, activaiton = 'selu'),
+    keras.layers.Dense(1, activation = 'sigmoid')
+])
